@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="SampleThickClientOAuth2.jnlp">
+  <information>
+    <title>SampleThickClientOAuth2</title>
+    <vendor>vkhalipe</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <jfx:javafx-runtime version="2.2+" href="http://javadl.sun.com/webapps/download/GetFile/javafx-latest/windows-i586/javafx2.jnlp"/>
+  </resources>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="SampleThickClientOAuth2.jar" size="79177" download="eager" />
+    <jar href="lib/commons-codec-1.8.jar" size="263865" download="eager" />
+    <jar href="lib/org.apache.oltu.oauth2.client-1.0.0-sources.jar" size="26783" download="eager" />
+    <jar href="lib/org.apache.oltu.oauth2.client-1.0.0.jar" size="31161" download="eager" />
+    <jar href="lib/org.apache.oltu.oauth2.common-1.0.0-sources.jar" size="44978" download="eager" />
+    <jar href="lib/org.apache.oltu.oauth2.common-1.0.0.jar" size="52313" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="SampleThickClientOAuth2" >
+    <param name="requiredFXVersion" value="2.2+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="samplethickclientoauth2.SampleThickClientOAuth2"  name="SampleThickClientOAuth2" />
+  <update check="always"/>
+</jnlp>

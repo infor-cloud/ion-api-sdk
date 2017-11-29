@@ -1,0 +1,7 @@
+authorization_endpoint=https://mingledev01-sso.mingledev.infor.com:443/{TENANT_ID}/as/authorization.oauth2
+token_endpoint=https://mingledev01-sso.mingledev.infor.com:443/{TENANT_ID}/as/token.oauth2
+revocation_endpoint=https://mingledev01-sso.mingledev.infor.com:443/{TENANT_ID}/as/revoke_token.oauth2
+client_id=ACME_PRD~QxG91-i82CO4P7L5R1YR4YwdOyWw5caGh0UqkvqYrUY
+client_secret=G1-DsyjDTlC6uzaelRKMZMDkfUU-3SUbs2zNdq-Rf9e0xE2G_mJhjqPCZXUPYHTqXQdMPKEqCwEO94rzmYleBg
+redirect_url=http://sample-oauth2-client.infor.com:8080/SampleAppOAuth2/RedirectServlet
+ion_api_url=https://mingledev01-ionapi.mingledev.infor.com/{TENANT_ID}/{RESOURCE}

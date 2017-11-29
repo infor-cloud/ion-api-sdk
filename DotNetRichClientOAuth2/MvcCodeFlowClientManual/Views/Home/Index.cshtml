@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>Sample OAuth2 client based on ThinkTecture IdentityServer3 example</h2>
+    <h3>code flow sample client</h3>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <h3>Scopes</h3>
+        @using (Html.BeginForm())
+        {
+            <p>
+                <input type="text" name="scopes" style="width: 200px" placeholder="openid profile read write" title="openid profile read write" value="" />
+            </p>
+            
+            <button name="OK">OK</button>
+        }
+    </div>
+</div>

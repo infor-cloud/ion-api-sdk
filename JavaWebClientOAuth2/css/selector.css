@@ -1,0 +1,9 @@
+.styled-select select {
+    //background: #eee;
+    padding: 10px;
+    //color: #000;
+    border: 1px solid #ddd;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	font-weight: 300;   
+   }
