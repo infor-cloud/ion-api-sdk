@@ -11,12 +11,12 @@ The Infor ION API gateway is a powerful API management tool. For more informatio
 ----------
 **Table of Contents**
 
-Choosing a grant type
-Java Web Applications
-Java Thick Clients
-.Net Web Applications
-.Net Thick Clients
-Backend Applications (Java or .Net)
+ - Choosing a grant type
+ - Java Web Applications
+ - Java Thick Clients
+ - .Net Web Applications
+ - .Net Thick Clients
+ - Backend Applications (Java or .Net)
 
 ----------
 Choosing a grant type
@@ -24,12 +24,18 @@ Choosing a grant type
 
 OAuth2 supports different flows to securely consume APIs for different access patterns. Of the various grants, ION API supports following grants -
 
-Authorization code Grant - suitable for Native mobile/desktop apps, Web Apps
-Implicit Grant - suitable for single page/user agent based applications
-Resource Owner Grant - suitable for server to server access i.e. backend service client. In these cases user/resource owner is not present for authorization so service accounts are used for backchannel authentication and authorization.
-SAML Bearer Grant - suitable for applications plugged in with Infor Ming.le (i.e. apps that have SSO with Ming.le federation hub).
+ 1. Authorization code Grant - suitable for Native mobile/desktop apps,
+    Web Apps    
+ 2. Implicit Grant - suitable for single page/user agent based
+    applications
+ 3. Resource Owner Grant - suitable for server to server access i.e.
+    backend service client. In these cases user/resource owner is not
+    present for authorization so service accounts are used for
+    backchannel authentication and authorization.
+ 4. SAML Bearer Grant - suitable for applications plugged in with Infor
+    Ming.le (i.e. apps that have SSO with Ming.le federation hub).
 
-Based on your clients access pattern, implement appropriate OAuth2 Grant. Here is a decision flow to choose OAuth2 grant:
+Based on your clients access pattern,  you need to implement the appropriate OAuth2 Grant. Here is a decision flow to help you choose an OAuth2 grant:
 
 ![Grant Flow](http://blogs.infor.com/technology/wp-content/uploads/sites/17/2017/11/ION_API_Choosing_OAuth2_grants.png)
 
