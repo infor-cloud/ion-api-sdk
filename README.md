@@ -11,9 +11,27 @@ The Infor ION API gateway is a powerful API management tool. For more informatio
 ----------
 **Table of Contents**
 
-[TOC]
+Choosing a grant type
+Java Web Applications
+Java Thick Clients
+.Net Web Applications
+.Net Thick Clients
+Backend Applications (Java or .Net)
 
 ----------
+Choosing a grant type
+=====================
+
+OAuth2 supports different flows to securely consume APIs for different access patterns. Of the various grants, ION API supports following grants -
+
+Authorization code Grant - suitable for Native mobile/desktop apps, Web Apps
+Implicit Grant - suitable for single page/user agent based applications
+Resource Owner Grant - suitable for server to server access i.e. backend service client. In these cases user/resource owner is not present for authorization so service accounts are used for backchannel authentication and authorization.
+SAML Bearer Grant - suitable for applications plugged in with Infor Ming.le (i.e. apps that have SSO with Ming.le federation hub).
+
+Based on your clients access pattern, implement appropriate OAuth2 Grant. Here is a decision flow to choose OAuth2 grant:
+
+![Grant Flow](http://blogs.infor.com/technology/wp-content/uploads/sites/17/2017/11/ION_API_Choosing_OAuth2_grants.png)
 
 Java web applications
 =====================
@@ -29,28 +47,28 @@ In order to obtain and use OAuth Tokens to consume ION API, you need to acquire 
 **Obtain OAuth Token**
 Once your app has OAuth Client and IFS Authorization Server details, OAuth tokens can be obtained using following steps -
 
- 4. Send Authorization Code Request to IFS authorization server.
+ 1. Send Authorization Code Request to IFS authorization server.
 
 	Initiate the process of obtaining OAuth token by sending Authorization code request to IFS Authorization Server. This is a HTTP GET or POST request to authorization endpoint with client_id (OAuth Client specific to your app),  redirect_uri (the URL where IFS Authorization Server send the code upon user consent. Must be the same URL as registered in IFS during integration),  response_type=code (indicate IFS  authorization server to send authorization code upon user consent) parameters.
 
- 5. Resource Owner (User) Authentication and Consent (IFS 
+ 2. Resource Owner (User) Authentication and Consent (IFS 
    functionality)
 
 	IFS authorization server will work with IFS Federation Hub to authenticate the user/Resource Owner and get user consent to release the claims to your app. If the user approves sharing claims with your application, then IFS authorization server will release authorization code to your application.
 
- 6. Exchanges the authorization code for an access token and refresh
+ 3. Exchanges the authorization code for an access token and refresh
    token
 
 	Using token endpoint of IFS authorization server, exchange the authorization code for an OAuth access token and refresh token. Send following parameters as Content-Type "application/x-www-form-urlencoded" -
 
-	 7. client_id (OAuth Client ID specific to your app)    
-	 7. client_secret (OAuth Client secret received while acquiring OAuth Client details)   
-	 7. grant_type=authorization_code (hint authorization server about the
+	 1. client_id (OAuth Client ID specific to your app)    
+	 2. client_secret (OAuth Client secret received while acquiring OAuth Client details)   
+	 3. grant_type=authorization_code (hint authorization server about the
 	        grant type being used)
-	 7. redirect_uri (The URL where authorization
+	 4. redirect_uri (The URL where authorization
         server will send access token. This URL must match the URL
         registered in ION API CE/IFS CE suing integration)
-	 1. code (The
+	 5. code (The
         authorization code sent by authorization server in previous step) In
         exchange, authorization server provides - token_type (Type of token
         issues. e.g. Bearer)
@@ -173,11 +191,11 @@ IFS authorization server will work with IFS Federation Hub to authenticate the u
 **Exchanges the authorization code for an access token and refresh token**
 Using token endpoint, of IFS authorization server, to exchange the authorization code for an OAuth access token and refresh token. Send following parameters as Content-Type "application/x-www-form-urlencoded" -
 
- 4. client_id (OAuth Client ID specific to your app)
- 5. client_secret (OAuth Client secret received while acquiring OAuth Client details)
- 6. grant_type=authorization_code (hint authorization server about the grant type being used)
- 7. redirect_uri (The URL where authorization server will send access token. This URL must match the URL registered in ION API CE/IFS CE suing integration)
- 8. code (The authorization code sent by authorization server in previous step)
+ 1. client_id (OAuth Client ID specific to your app)
+ 2. client_secret (OAuth Client secret received while acquiring OAuth Client details)
+ 3. grant_type=authorization_code (hint authorization server about the grant type being used)
+ 4. redirect_uri (The URL where authorization server will send access token. This URL must match the URL registered in ION API CE/IFS CE suing integration)
+ 5. code (The authorization code sent by authorization server in previous step)
 
 In exchange, authorization server provides -
  1. token_type (Type of token issues. e.g. Bearer)
@@ -191,10 +209,10 @@ Use the access token to consume ION API endpoints. You will need to send the acc
 **Refresh access token**
 Currently the access tokens are valid for 2 hours. If the access token is expired, a new access token can be obtained using refresh token. Following parameters are used to renew access token using IFS CE token endpoint
 
- 13. grant_type=refresh_token 
- 14. refresh_token
- 15. client id - use as username for HTTP Basic authentication
- 16. client secret - user as password for HTTP Basic authentication
+ 1. grant_type=refresh_token 
+ 2. refresh_token
+ 3. client id - use as username for HTTP Basic authentication
+ 4. client secret - user as password for HTTP Basic authentication
 
 Typically, OAuth Client library will automatically handle refreshing expired tokens.
 
@@ -271,8 +289,8 @@ Code snippets to implement OAuth are as follows -
 A sample rich client java application is included in this SDK. 
 To run the source -
 
- 5. Extract the source and run dist/SampleThickClientOAuth2.jar
- 6. Alternatively compile the source and run resulting jar.
+ 1. Extract the source and run dist/SampleThickClientOAuth2.jar
+ 2. Alternatively compile the source and run resulting jar.
 
 .Net web applications
 ========================
@@ -290,26 +308,26 @@ Once your app has OAuth Client and IFS Authorization Server details, OAuth token
 	 - Send Authorization Code Request to IFS authorization server.
 	 - Initiate the process of obtaining OAuth token by sending Authorization code request to IFS CE Authorization Server. This is a HTTP GET or POST request to authorization endpoint with:
 
- 4. client_id (OAuth Client iD specific to your app)
- 5. redirect_uri (the URL where IFS CE Authorization Server sends the code upon user consent, note: must be the same URL as registered in IFS CE during integration)
- 6. response_type=code (tells the IFS CE authorization server to send an authorization code upon user consent).
+ 1. client_id (OAuth Client iD specific to your app)
+ 2. redirect_uri (the URL where IFS CE Authorization Server sends the code upon user consent, note: must be the same URL as registered in IFS CE during integration)
+ 3. response_type=code (tells the IFS CE authorization server to send an authorization code upon user consent).
 
 **Resource Owner (User) Authentication and Consent (IFS CE functionality)**
 IFS CE authorization server will work with IFS CE Federation Hub to authenticate the user/Resource Owner and get user consent to release the claims to your app. If the user approves sharing claims with your application, then IFS CE authorization server will release authorization code to your application.
 **Exchanges the authorization code for an access token and refresh token**
 Using token endpoint of IFS CE authorization server, exchange the authorization code for an OAuth access token and refresh token. Send following parameters as Content-Type "application/x-www-form-urlencoded" -
 
- 7. client_id (OAuth Client ID specific to your app)
- 8. client_secret (OAuth Client secret received while acquiring OAuth Client details)
- 9. grant_type=authorization_code (hint authorization server about the grant type being used)
- 10. redirect_uri (The URL where authorization server will send access token. This URL must match the URL registered in ION API CE/IFS suing integration)
- 11. code (The authorization code sent by authorization server in previous step) In exchange, 
+ 1. client_id (OAuth Client ID specific to your app)
+ 2. client_secret (OAuth Client secret received while acquiring OAuth Client details)
+ 3. grant_type=authorization_code (hint authorization server about the grant type being used)
+ 4. redirect_uri (The URL where authorization server will send access token. This URL must match the URL registered in ION API CE/IFS suing integration)
+ 5. code (The authorization code sent by authorization server in previous step) In exchange, 
  
  authorization server provides -
- 12. token_type (Type of token issues. e.g. Bearer)
- 13. expires_in (validity period of the access token)
- 14. refresh_token (Refresh token to be used to renew expired access token)
- 15. access_token (Token to be used for accessing protected resources)
+ 1. token_type (Type of token issues. e.g. Bearer)
+ 2. expires_in (validity period of the access token)
+ 3. refresh_token (Refresh token to be used to renew expired access token)
+ 4. access_token (Token to be used for accessing protected resources)
 
 **Use OAuth Token to consume ION API CE**
 Use the access token to consume ION API CE endpoints. You will need to send the access token in Authorization (HTTP) header. Please refer ION API CE inbound security for details.
@@ -516,12 +534,12 @@ In addition to a Service Account to act as the "user" your backend Application w
 **Example HTTP Request for OAuth2 Resource Owner grant**
 OAuth2 resource owner grant facilitates obtaining access token for backend services using backchannel HTTP POST request to auth server token endpoint (e.g. as/token or connect/token) using following params-
 
- 5. grant_type = password (fixed) 
- 6. username = service account accesskey
- 7. password = service account secretkey
- 8. client_id = authorized app
- 9. client id client_secret = authorized app 
- 10. client secret scope = oauth2 scope (Optional)
+ 1. grant_type = password (fixed) 
+ 2. username = service account accesskey
+ 3. password = service account secretkey
+ 4. client_id = authorized app
+ 5. client id client_secret = authorized app 
+ 6. client secret scope = oauth2 scope (Optional)
 
 **.NET Applications**
 ---------------------
