@@ -16,7 +16,7 @@ The Infor ION API gateway is a powerful API management tool. For more informatio
  - Java Thick Clients
  - .Net Web Applications
  - .Net Thick Clients
- - Backend Applications (Java or .Net)
+ - Backend Applications (Java, .Net or Golang)
 
 ----------
 Choosing a grant type
@@ -523,7 +523,7 @@ If a refresh token is provided when the authorization from the user is not requi
     _revokeToken(this.RefreshTokenTextBox.Text, OAuth2Constants.RefreshToken);
 
 
-Backend Applications (Java or .Net)
+Backend Applications (Java, .Net or Golang)
 ===================================
 
 For backend applications, those applications that do not have a user available to authenticate, the recommended grant to use is resource owner.  Given the disparity for the location of the Infor Ming.le identities a new set of credentials is being used for the resource owner grant.
@@ -627,8 +627,9 @@ Using the same method as the one provided to revoke access tokens it is possible
 Go applications
 -------------------
 
-Golang provides package golang.org/x/oauth2 to implement the OAuth2.0 protocol. 
-**Make OAuth 2.0 configuration**
+Golang provides package golang.org/x/oauth2 to implement the OAuth2.0 protocol.
+  
+**Make OAuth 2.0 configuration**  
 First step is to define a configuration. Reference to downloaded credentials properties will be used in all code examples.
 
     conf := &oauth2.Config{
@@ -643,7 +644,7 @@ First step is to define a configuration. Reference to downloaded credentials pro
            },
     }
 
-**Obtain tokens**
+**Obtain tokens**  
 Now it is ready to obtain tokens. Token struct in Go contains both access and refresh tokens.
 
     tok, err := conf.PasswordCredentialsToken(oauth2.NoContext, <Service Account AccessKey>, <Service Account SecretKey>)
@@ -651,7 +652,7 @@ Now it is ready to obtain tokens. Token struct in Go contains both access and re
            // handle error
     }
 
-**Create HTTP client and make a request**
+**Create HTTP client and make a request**  
 OAuth 2.0 configuration struct has also a method to create HTTP client for you.
 
     client := conf.Client(oauth2.NoContext, tok)
@@ -661,7 +662,7 @@ OAuth 2.0 configuration struct has also a method to create HTTP client for you.
            // handle error
     }
 
-Note: you do not need refresh token manually, client cares about and will do it [automatically.](https://godoc.org/golang.org/x/oauth2#Config.Client)
+_Note:_ you do not need refresh token manually, client cares about and will do it [automatically.](https://godoc.org/golang.org/x/oauth2#Config.Client)
 Revoke tokens
 The package doesn't provide methods to revoke any token. You can do it, calling revoke service directly.
 
