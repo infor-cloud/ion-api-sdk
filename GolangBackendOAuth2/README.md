@@ -36,9 +36,10 @@ OAuth 2.0 configuration struct has also a method to create HTTP client for you.
            // handle error
     }
 
-_Note:_ you do not need refresh token manually, client cares about and will do it [automatically.](https://godoc.org/golang.org/x/oauth2#Config.Client)
-Revoke tokens
-The package doesn't provide methods to revoke any token. You can do it, calling revoke service directly.
+_Note:_ you do not need to refresh token manually, client cares about and will do it [automatically.](https://godoc.org/golang.org/x/oauth2#Config.Client)  
+
+**Revoke tokens**  
+The package does not provide methods to revoke any token. You can do it, calling revoke service directly.
 
     resp, err := http.Get(<pu> + <or> + "?token=" + tok.AccessToken)
     if err != nil {
