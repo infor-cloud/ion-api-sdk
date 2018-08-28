@@ -42,7 +42,7 @@ Based on your clients access pattern,  you need to implement the appropriate OAu
 Java web applications
 =====================
 
-[Sample Java Web Application](tree/master/JavaWebClientOAuth2)
+[Sample Java Web Application](/infor-cloud/ion-api-sdk/tree/master/JavaWebClientOAuth2)
 
 Java thick clients
 ==================
