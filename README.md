@@ -37,7 +37,7 @@ OAuth2 supports different flows to securely consume APIs for different access pa
 
 Based on your clients access pattern,  you need to implement the appropriate OAuth2 Grant. Here is a decision flow to help you choose an OAuth2 grant:
 
-![Grant Flow](http://blogs.infor.com/technology/wp-content/uploads/sites/17/2017/11/ION_API_Choosing_OAuth2_grants.png)
+![Grant Flow](https://raw.githubusercontent.com/infor-cloud/ion-api-sdk/master/ION%20API%20-%20Choosing%20OAuth2%20grants.png)
 
 Java web applications
 =====================
