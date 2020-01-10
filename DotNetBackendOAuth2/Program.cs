@@ -27,21 +27,21 @@ namespace Infor.OAuth2SampleConsoleResourceOwner
     {
         #region Environment properties
 
-        private const string ResourceOwnerClientId = "ionapi_ro_testclient";
-        private const string ResourceOwnerClientSecret = "Wj13gxGD";
+        private const string ResourceOwnerClientId = "<replace with ci from .ionapi file>";
+        private const string ResourceOwnerClientSecret = "<replace with cs from .ionapi file>";
 
-        private const string OAuth2TokenEndpoint = "https://mingleinteg01-sso.mingledev.infor.com/ACME_AX1/as/token.oauth2";
-        private const string OAuth2TokenRevocationEndpoint = "https://mingleinteg01-sso.mingledev.infor.com/ACME_AX1/as/revoke_token.oauth2";
-        private const string OAuth2AuthorizationEndpoint = "https://mingleinteg01-sso.mingledev.infor.com/ACME_AX1/as/authorization.oauth2";
+        private const string OAuth2TokenEndpoint = "<replace with pu+ot from .ionapi file>";
+        private const string OAuth2TokenRevocationEndpoint = "<replace with pu+or from .ionapi file>";
+        private const string OAuth2AuthorizationEndpoint = "<replace with pu+oa from .ionapi file>";
 
-        private const string IONAPIBaseUrl = "https://mingleinteg01-ionapi.mingledev.infor.com/ACME_AX1/";
+        private const string IONAPIBaseUrl = "<replace with ia from .ionapi file>";
 
         #endregion
 
         #region User Properties
 
-        private const string ServiceAccountAccessKey = "ACME_AX1#WHRenCSZHAr9ToHv5zqOP8kREO25YuAj9080pp20H7b6C0fORXKdEUahIvIzTmcfbVx-TQRTObEjt_vurKbBRQ";
-        private const string ServiceAccountSecretKey = "C54-BSqd9sXHdTdqrOXr4-uIWchc_lrzGk6vdVdqaZQmk0SPdHjASZIq4PJ_4KsROA7H5WSn5K28MAPgJQlZKw";
+        private const string ServiceAccountAccessKey = "<replace with saak from .ionapi file>";
+        private const string ServiceAccountSecretKey = "<replace with sask from .ionapi file>";
 
         #endregion
 
@@ -106,7 +106,7 @@ namespace Infor.OAuth2SampleConsoleResourceOwner
             };
 
             client.SetBearerToken(token);
-            var response = client.GetAsync("M3/m3api-rest/execute/CRS610MI/ChgFinancial?CUNO=Y30000&BLCD=0").Result;
+            var response = client.GetAsync("<replace with API proxy endpoint to test>").Result;
 
             if (response.IsSuccessStatusCode)
             {
