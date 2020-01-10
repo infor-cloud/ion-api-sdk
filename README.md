@@ -125,10 +125,15 @@ With the token from the TokenResponse it is possible to call the service passing
                 client.SetBearerToken(token);
                 var response = client.GetAsync("M3/m3api-rest/execute/CRS610MI/ChgFinancial?CUNO=Y30000&BLCD=0").Result;
 
-**Revoke access_token**
-When the token is not needed anymore it is recommended to revoke the access_token. 
-Currently the Thinktecture library does not provide a method to revoke the token. 
-But this can be achieved with a method like:
+**Refresh token**
+If a refresh token is available as part of the response it is possible to obtain a new access_token and refresh_token without requiring the service account credentials.
+
+    _oauth2.RequestRefreshTokenAsync(refreshToken).Result;
+
+**Revoke refresh token**
+If a refresh token is provided and there is no longer the need to make calls to the webservice without providing the service account credentials then the refresh token should be revoked.
+
+Currently the Thinktecture library does not provide a method to revoke the token. But this can be achieved with a method like:
 
     private static void RevokeToken(string token, string tokenType)
     {
@@ -143,18 +148,7 @@ But this can be achieved with a method like:
      
     }
 
-In order to revoke an access_token it should be called with the following parameters:
-
-    RevokeToken(token.AccessToken, OAuth2Constants.AccessToken);
-
-**Refresh token**
-If a refresh token is available as part of the response it is possible to obtain a new access_token and refresh_token without requiring the service account credentials.
-
-    _oauth2.RequestRefreshTokenAsync(refreshToken).Result;
-
-**Revoke refresh token**
-If a refresh token is provided and there is no longer the need to make calls to the webservice without providing the service account credentials then the refresh token should be revoked.
-Using the same method as the one provided to revoke access tokens it is possible to revoke refresh tokens as well.
+In order to revoke an refresh token, it should be called with the following parameters:
 
     RevokeToken(token.RefreshToken, OAuth2Constants.RefreshToken);
 
@@ -203,17 +197,7 @@ _Note:_ you do not need to refresh token manually, client cares about and will d
 **Revoke tokens**  
 The package does not provide methods to revoke any token. You can do it, calling revoke service directly.
 
-    resp, err := http.Get(<pu> + <or> + "?token=" + tok.AccessToken)
+    resp, err := http.Get(<pu> + <or> + "?token=" + tok.RefreshToken)
     if err != nil {
            // handle error
     }
-
-
-
-
-
-
-
-
-
-
