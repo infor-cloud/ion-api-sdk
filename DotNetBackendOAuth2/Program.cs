@@ -34,7 +34,7 @@ namespace Infor.OAuth2SampleConsoleResourceOwner
         private const string OAuth2TokenRevocationEndpoint = "<replace with pu+or from .ionapi file>";
         private const string OAuth2AuthorizationEndpoint = "<replace with pu+oa from .ionapi file>";
 
-        private const string IONAPIBaseUrl = "<replace with ia from .ionapi file>";
+        private const string IONAPIBaseUrl = "<replace with ia+'/'+ti from .ionapi file>";
 
         #endregion
 
